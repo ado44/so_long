@@ -6,7 +6,7 @@
 /*   By: amarna <amarna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:46:51 by amarna            #+#    #+#             */
-/*   Updated: 2023/01/11 17:38:21 by amarna           ###   ########.fr       */
+/*   Updated: 2023/02/10 18:24:59 by amarna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,17 @@ typedef struct s_image
 typedef struct s_map
 {
 	char	**map;
+	char	**tmp;
 	int		width;
+	int		w_tmp;
+	int		h_tmp;
 	int		height;
 	int		player_pos_x;
+	int		pos_x;
 	int		player_pos_y;
+	int		pos_y;
+	int		exit_x;
+	int		exit_y;
 }				t_map;
 
 typedef struct s_data
@@ -71,6 +78,7 @@ typedef struct s_data
 	int		total_player;
 	int		total_exit;
 	int		total_collect;
+	int		total_move;
 }				t_data;
 
 typedef struct s_program {
@@ -100,14 +108,22 @@ void		err_msg(char *s);
 void		check_ber(char *filename);
 void		ft_close(int fd);
 void		count_all(t_program *prog);
-void		put_data(t_program *p);
+int			put_data(t_program *p);
 void		end_game(t_program *data);
 void		display_img(t_program *p, void *s, int a, int b);
-void		right(t_program *p);
-void		left(t_program *p);
-void		up(t_program *p);
-void		down(t_program *p);
+int			right(t_program *p);
+int			left(t_program *p);
+int			up(t_program *p);
+int			down(t_program *p);
 void		free_map(t_program *data);
 void		free_img(t_program *p);
+void		err_img(char *s, t_program *p);
+void		is_playable(char *av[], t_program *v);
+char		**get_map_tmp(char *av[], t_program *prog);
+void		set_data(t_program *p);
+void		set_exit(t_program *prog);
+int			handle_kp(int keysym, t_program *p);
+void		map_info(t_program *p);
+void		free_all(t_program *p);
 
 #endif

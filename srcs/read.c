@@ -6,7 +6,7 @@
 /*   By: amarna <amarna@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 11:03:49 by amarna            #+#    #+#             */
-/*   Updated: 2023/01/11 17:06:42 by amarna           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:29:15 by amarna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,6 @@ int	check_all_scnd(t_program *prog, int i)
 	return (1);
 }
 
-void	ft_close(int fd)
-{
-	if (close(fd) == -1)
-	{
-		err_msg("Error\nCannot close the file.");
-		exit(EXIT_FAILURE);
-	}
-}
-
 char	**get_map(int fd, t_program prog)
 {
 	int		i;
@@ -110,4 +101,27 @@ char	**get_map(int fd, t_program prog)
 	}
 	ft_close(fd);
 	return (prog.map.map);
+}
+
+char	**get_map_tmp(char *av[], t_program *prog)
+{
+	char	*line;
+	char	**map;
+	int		i;
+	int		j;
+	int		fd;
+
+	fd = open(av[1], O_RDONLY);
+	i = 0;
+	j = 0;
+	line = gnl(fd);
+	map = ft_split(line, '\n');
+	while (map[i])
+		i++;
+	prog->map.h_tmp = i;
+	j = ft_strlen(map[0]);
+	prog->map.w_tmp = j;
+	free(line);
+	ft_close(fd);
+	return (map);
 }

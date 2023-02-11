@@ -8,7 +8,7 @@ LINKS 		= -Lmlx_linux -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 SRCDIR		= ./srcs/
 
-SRCS		= $(SRCDIR)so_long.c $(SRCDIR)utils.c $(SRCDIR)data.c $(SRCDIR)input.c $(SRCDIR)display.c $(SRCDIR)errors.c $(SRCDIR)checker.c $(SRCDIR)read.c $(SRCDIR)window.c
+SRCS		= $(SRCDIR)so_long.c $(SRCDIR)utils.c $(SRCDIR)data.c $(SRCDIR)input.c $(SRCDIR)display.c $(SRCDIR)errors.c $(SRCDIR)checker.c $(SRCDIR)read.c $(SRCDIR)window.c $(SRCDIR)playable.c $(SRCDIR)hooks.c
 
 OBJS		= $(SRCS:.c=.o)
 
